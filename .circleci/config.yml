@@ -31,7 +31,6 @@ workflows:
               only: master
       - framer/publish:
           framer-project-path: "./"
-          framer-package-name: "Test Design Demo"
           requires:
             - framer/build
           filters:
