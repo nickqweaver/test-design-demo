@@ -5,7 +5,7 @@
 #
 version: 2.1
 orbs:
-  framer: framer/bridge@dev:0.0.14
+  framer: cli-orb/framer@1.7.0
 workflows:
   version: 2.1
   build-project:
