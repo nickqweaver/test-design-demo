@@ -17,7 +17,7 @@ workflows:
               only:
                 - master
     jobs:
-      - framer/import-components:
+      - framer/component-import:
           component-library-package: "test-design-demo"
           framer-project-path: "./"
           color-token-path: "./assets/colors.json"
