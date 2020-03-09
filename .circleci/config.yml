@@ -1,38 +1,17 @@
-# Javascript Node CircleCI 2.1 configuration file
-#
-#
-#
 version: 2.1
 orbs:
-  framer: framer/bridge@dev:0.0.14
+  node: circleci/node@1.1.6
+jobs:
+  build-and-test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm test
 workflows:
-  version: 2.1
-  build-project:
-    triggers:
-      - schedule:
-          cron: "0 8 * * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - framer/import-components:
-          component-library-package: "test-design-demo"
-          framer-project-path: "./"
-          color-token-path: "./assets/colors.json"
-          icon-path: "./svg"
-  build-and-publish:
-    jobs:
-      - framer/build:
-          framer-project-path: "./"
-          filters:
-            branches:
-              only: master
-      - framer/publish:
-          framer-project-path: "./"
-          framer-package-name: "Test Design Demo"
-          requires:
-            - framer/build
-          filters:
-            branches:
-              only: master
+    build-and-test:
+      jobs:
+        - build-and-test
